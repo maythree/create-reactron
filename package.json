@@ -1,0 +1,22 @@
+{
+  "name": "create-reactron",
+  "version": "0.1.0",
+  "private": true,
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^2.0.5",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "concurrently \"yarn react-start\" \"wait-on http://localhost:3000/ && electron .\"",
+    "react-start": "cross-env NODE_PATH=src BROWSER=none react-scripts start"
+  },
+  "devDependencies": {
+    "concurrently": "^3.6.1",
+    "cross-env": "^5.2.0",
+    "react-hot-loader": "^4.3.4",
+    "wait-on": "^2.1.0"
+  }
+}
