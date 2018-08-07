@@ -7,11 +7,10 @@ let mainWindow;
 function createWindow() {
     mainWindow = new BrowserWindow({transparent: true, width: 800, height: 600});
     
-    mainWindow.loadURL("http://localhost:3000/");
-    mainWindow.setMenu(null);
+    mainWindow.loadURL("http://localhost:8080/");
     
     //Show Development Tool
-    //mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
     mainWindow.on('closed', function () {
         mainWindow = null
