@@ -10,18 +10,17 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "start": "concurrently \"yarn react-start\" \"wait-on http://localhost:3000/ && electron .\"",
-    "react-start": "webpack-dev-server --hot --host 0.0.0.0"
+    "start": "cross-env webpack-dev-server --inline",
+    "electron-start": "webpack && electron -r babel-register -r babel-polyfill . --debug"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "concurrently": "^3.6.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-register": "^6.26.0",
     "cross-env": "^5.2.0",
-    "react-hot-loader": "^4.3.4",
-    "wait-on": "^2.1.0",
     "webpack": "^4.16.4",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5"
