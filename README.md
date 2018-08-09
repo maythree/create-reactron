@@ -21,7 +21,7 @@ yarn start
 # build mac install package
 yarn build:osx
 # build win(32/64 bit) install package
-yarn win 
+yarn build:win 
 # remove ./dist
 yarn clean
 ```
