@@ -28,4 +28,5 @@ yarn clean
 
 ## Dependency
 * require yarn or npm
-* babel, webpack, webpack-dev-server and webpack-cli need to be installed global  command : yarn add global babel webpack webpack-dev-server webpack cli
+* babel, webpack, webpack-dev-server and webpack-cli need to be installed global
+<br>command : *yarn add global babel webpack webpack-dev-server webpack cli*
