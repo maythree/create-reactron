@@ -1,29 +1,14 @@
 var webpack = require('webpack');
 var path = require('path');
-var port = 8080;
-var publicPath = 'http://localhost:' + port;
-var spawn = require('child_process').spawn;
-
-var buildEntryPoint = function(entryPoint){
-    return [
-        'webpack-dev-server/client?http://localhost:' + port,
-        'webpack/hot/only-dev-server',
-        entryPoint
-    ]
-};
 
 module.exports = {
-    devtool: 'inline-source-map',
-
     entry: {
-        bundle: buildEntryPoint(path.join(__dirname, 'src/index.js'))
+        bundle: path.join(__dirname, 'src/index.js')
     },
 
     output: {
         path: path.join(__dirname, 'src/dist/'),
-        filename: '[name].js',
-        publicPath,
-        libraryTarget: 'commonjs2'
+        filename: '[name].js'
     },
 
     module: {
@@ -40,7 +25,7 @@ module.exports = {
         ]
     },
 
-    target: 'electron-renderer',
+    target: 'electron-main',
 
     node: {
         __dirname: false
@@ -52,28 +37,5 @@ module.exports = {
             path.resolve(__dirname + '/src'),
             'node_modules'
         ]
-    },
-
-    plugins: [
-        new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
-        new webpack.LoaderOptionsPlugin({
-            debug: true
-        })
-    ],
-
-    devServer: {
-        port,
-        hot: true,
-        inline: false,
-        historyApiFallback: true,
-        contentBase: path.join(__dirname, 'src/'),
-        publicPath,
-        setup() {
-            spawn('npm', ['run', 'electron-start'], { shell: true, stdio: 'inherit' })
-                .on('close', code => process.exit(code))
-                .on('error', spawnError => console.error(spawnError));
-        }
     }
-};
+}

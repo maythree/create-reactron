@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>create-reactron</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      var electron = require('electron');
+      var remote = electron.remote;
+      var rootPath = remote.getGlobal('rootPath');
+      var isDev = process.env.NODE_ENV === 'development';
+      var scriptUrl = isDev ? 'http://localhost:8080/bundle.js' : rootPath + '/src/dist/bundle.js?rev=' + remote.app.getVersion();
+      var scriptEl = document.createElement('script');
+      scriptEl.setAttribute("type", "text/javascript");
+      scriptEl.setAttribute("src", scriptUrl);
+      document.body.appendChild(scriptEl);
+    </script>
+  </body>
+</html>

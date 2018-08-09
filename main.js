@@ -1,16 +1,24 @@
+global.rootPath = __dirname;
+global.isDev = process.env.NODE_ENV === 'development';
+
 const electron = require('electron');
+const url = require('url');
+const path = require('path');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
 let mainWindow;
 
 function createWindow() {
-    mainWindow = new BrowserWindow({transparent: true, width: 800, height: 600});
+    mainWindow = new BrowserWindow({transparent: true, width: 800, height: 800});
     
-    mainWindow.loadURL("http://localhost:8080/");
+    mainWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'src/dist/index.html'),
+        protocol: 'file:',
+        slashes: true
+    }));
     
-    //Show Development Tool
-    mainWindow.webContents.openDevTools();
+    if (isDev) mainWindow.webContents.openDevTools();
 
     mainWindow.on('closed', function () {
         mainWindow = null
